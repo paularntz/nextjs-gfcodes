@@ -19,7 +19,9 @@ const getTopics = async () => {
 
 export default async function TopicsList() {
 
-    const {topics} = await getTopics();
+    const { topics } = await getTopics().then(resp=>{
+        return resp ? resp : {};
+    })
 
     return (
         <>
