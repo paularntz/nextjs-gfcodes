@@ -9,7 +9,7 @@ export default async function TopicsList() {
     const getTopics = async () => {
 
         try {
-            const res = await fetch('http://localhost:3000/api/topics',
+            const res = await fetch('https://admirable-conkies-c2b178.netlify.app/api/topics',
                 {cache: 'no-store'}
             );
             if (!res.ok) {
