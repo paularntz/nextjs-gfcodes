@@ -21,7 +21,7 @@ export default async function TopicsList() {
         }
     }
 
-    const { topics } = await getTopics().then(resp=>{
+    let { topics } = await getTopics().then(resp=>{
         return resp ? resp : {};
     })
 
