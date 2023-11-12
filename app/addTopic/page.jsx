@@ -13,7 +13,7 @@ export default function AddTopic() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!firstName) {
+        if (!firstName || !lastName) {
             alert("First Name, Last Name and Address are required.")
             return
         }
@@ -23,7 +23,7 @@ export default function AddTopic() {
                 headers: {
                     "Content-type": "application/json"
                 },
-                body: JSON.stringify({ title, firstName }),
+                body: JSON.stringify({ title, firstName, lastName }),
 
             })
             if (res.ok) {
