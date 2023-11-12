@@ -15,7 +15,7 @@ export default function EditTopicForm( {id, title, description, firstName}) {
             {
                 method: "PUT",
                 headers: {"Content-type": "application/json"},
-                body: JSON.stringify({ newTitle, newDescription})
+                body: JSON.stringify({ newTitle, newDescription, newFirstName})
             })
             if (!res.ok) {
                 throw new Error("Failed to update topic.")
@@ -31,7 +31,7 @@ export default function EditTopicForm( {id, title, description, firstName}) {
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
         <input 
             onChange={e => setNewFirstName(e.target.value)}
-            value={firstName}
+            value={newFirstName}
             type="text" 
             placeholder="First Name" 
             className="border border-slate-500 px-8 py-2"
