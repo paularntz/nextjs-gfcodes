@@ -22,7 +22,6 @@ export default function AddTopic() {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json",
-                    "RequestMode": "no-cors"
                 },
                 body: JSON.stringify({ title, description, firstName, lastName, violation }),
 
