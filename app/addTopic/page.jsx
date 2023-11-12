@@ -21,9 +21,9 @@ export default function AddTopic() {
             const res = await fetch('https://admirable-conkies-c2b178.netlify.app/api/topics', {
                 method: "POST",
                 headers: {
-                    "Content-type": "application/json",
+                    "Content-type": "application/json"
                 },
-                body: JSON.stringify({ title, description, firstName, lastName, violation }),
+                body: JSON.stringify({ title, description }),
 
             })
             if (res.ok) {
@@ -39,7 +39,7 @@ export default function AddTopic() {
 
     return (
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-            <div className="grid grid-cols-2 gap-4">
+            <div class="grid grid-cols-2 gap-4">
                 <input
                     onChange={(e) => setFirstName(e.target.value)}
                     value={firstName}
@@ -56,7 +56,7 @@ export default function AddTopic() {
                     className="border border-slate-500 px-8 py-2"
                 />
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div class="grid grid-cols-2 gap-4">
                 <input
                     onChange={(e) => setTitle(e.target.value)}
                     value={title}
@@ -66,9 +66,10 @@ export default function AddTopic() {
                 />
                 <select
                     onChange={(e) => setViolation(e.target.value)}
-                    defaultValue="0"
+                    selected={violation}
+                    placeholder="Contact Description"
                 >
-                    <option value="0" disabled>Select One</option>
+                    <option value="0" selected disabled>Select One</option>
                     <option value="Tall Grass">Tall Grass</option>
                     <option value="Trash In Yard">Trash In Yard</option>
                     <option value="Downed Tree">Downed Tree</option>

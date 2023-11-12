@@ -1,13 +1,13 @@
 "use client"
-import { useState } from "react";
+import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { LocaleRouteNormalizer } from "next/dist/server/future/normalizers/locale-route-normalizer";
 
-export default function EditTopicForm( {id, title, description}) {
+export default function EditTopicForm( {id, title, description, firstName}) {
 
-    const [newTitle, setNewTitle] = useState(title);
-    const [newDescription, setNewDescription] = useState(description);
-    const router = useRouter();
+    const [newTitle, setNewTitle] = useState(title)
+    const [newDescription, setNewDescription] = useState(description)
+    const [newFirstName, setNewFirstName] = useState(firstName)
+    const router = useRouter()
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -20,15 +20,22 @@ export default function EditTopicForm( {id, title, description}) {
             if (!res.ok) {
                 throw new Error("Failed to update topic.")
             }
-            router.refresh();
-            router.push("/");
+            router.refresh()
+            router.push("/")
         } catch (error) {
-            console.log(error);
+            console.log(error)
         }
     }
 
     return (
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+        <input 
+            onChange={e => setNewFirstName(e.target.value)}
+            value={firstName}
+            type="text" 
+            placeholder="First Name" 
+            className="border border-slate-500 px-8 py-2"
+        />
         <input 
             onChange={e => setNewTitle(e.target.value)}
             value={newTitle}
