@@ -8,7 +8,7 @@ export default function AddTopic() {
     const [description, setDescription] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-    const [violation, setViolation] = useState("");
+    const [violation, setViolation] = useState("0");
     const router = useRouter();
 
     const handleSubmit = async (e) => {
@@ -65,10 +65,10 @@ export default function AddTopic() {
             />
             <select
                 onChange={(e) => setViolation(e.target.value)}
-                selected={violation}
-                placeholder="Contact Description"
+                defaultValue={violation}
+                className="border border-slate-500 px-8 py-2"
             >
-                <option value="0" selected disabled>Select One</option>
+                <option value="0" disabled>Select One</option>
                 <option value="Tall Grass">Tall Grass</option>
                 <option value="Trash In Yard">Trash In Yard</option>
                 <option value="Downed Tree">Downed Tree</option>
