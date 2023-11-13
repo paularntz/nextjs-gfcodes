@@ -2,8 +2,10 @@ import mongoose, { Schema } from "mongoose"
 
 const topicSchema = new Schema(
     {
+        firstName: String,
+        lastName: String,
         title: String,
-        description: String
+        description: String,
     }, 
     {
         timestamp: true,

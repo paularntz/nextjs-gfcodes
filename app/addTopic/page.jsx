@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 export default function AddTopic() {
 
     const [title, setTitle] = useState("");
-    //const [description, setDescription] = useState("");
+    const [description, setDescription] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     //const [violation, setViolation] = useState("");
@@ -18,12 +18,12 @@ export default function AddTopic() {
             return
         }
         try {
-            const res = await fetch('https://admirable-conkies-c2b178.netlify.app/api/topics', {
+            const res = await fetch('http://localhost:3000/api/topics', {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json"
                 },
-                body: JSON.stringify({ title, firstName, lastName }),
+                body: JSON.stringify({ title, firstName, lastName, description }),
 
             })
             if (res.ok) {
@@ -39,7 +39,7 @@ export default function AddTopic() {
 
     return (
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-            <div class="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-4">
                 <input
                     onChange={(e) => setFirstName(e.target.value)}
                     value={firstName}
@@ -55,7 +55,7 @@ export default function AddTopic() {
                     className="border border-slate-500 px-8 py-2"
                 />
             </div>
-           {/*  <div class="grid grid-cols-2 gap-4"> */}
+           {/*  <div className="grid grid-cols-2 gap-4"> */}
                 <input
                     onChange={(e) => setTitle(e.target.value)}
                     value={title}
@@ -75,12 +75,12 @@ export default function AddTopic() {
                     <option value="Illegal Burning">Illegal Burning</option>
                 </select> */}
             {/* </div> */}
-            {/* <textarea
+            <textarea
                 onChange={(e) => setDescription(e.target.value)}
                 value={description}
                 placeholder="Description"
                 className="border border-slate-500 px-8 py-2"
-            /> */}
+            />
             <button type="submit" className="bg-green-600 font-bold text-white py-3 px-6 w-fit">
                 Add Topic
             </button>
