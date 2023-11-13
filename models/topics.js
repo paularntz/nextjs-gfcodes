@@ -4,7 +4,8 @@ const topicSchema = new Schema(
     {
         firstName: String,
         lastName: String,
-        title: String,
+        address: String,
+        violation:String,
         description: String,
     }, 
     {

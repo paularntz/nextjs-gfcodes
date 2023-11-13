@@ -4,11 +4,11 @@ import { useRouter } from "next/navigation"
 
 export default function AddTopic() {
 
-    const [title, setTitle] = useState("");
+    const [address, setAddress] = useState("");
     const [description, setDescription] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-    //const [violation, setViolation] = useState("");
+    const [violation, setViolation] = useState("");
     const router = useRouter();
 
     const handleSubmit = async (e) => {
@@ -18,12 +18,13 @@ export default function AddTopic() {
             return
         }
         try {
-            const res = await fetch(process.env.URI + '/api/topics', {
+            const endpoint = '/api/topics'
+            const res = await fetch(endpoint, {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json"
                 },
-                body: JSON.stringify({ title, firstName, lastName, description }),
+                body: JSON.stringify({ address, firstName, lastName, description, violation }),
 
             })
             if (res.ok) {
@@ -55,26 +56,24 @@ export default function AddTopic() {
                     className="border border-slate-500 px-8 py-2"
                 />
             </div>
-           {/*  <div className="grid grid-cols-2 gap-4"> */}
-                <input
-                    onChange={(e) => setTitle(e.target.value)}
-                    value={title}
-                    type="text"
-                    placeholder="Title"
-                    className="border border-slate-500 px-8 py-2"
-                />
-                {/* <select
-                    onChange={(e) => setViolation(e.target.value)}
-                    selected={violation}
-                    placeholder="Contact Description"
-                >
-                    <option value="0" selected disabled>Select One</option>
-                    <option value="Tall Grass">Tall Grass</option>
-                    <option value="Trash In Yard">Trash In Yard</option>
-                    <option value="Downed Tree">Downed Tree</option>
-                    <option value="Illegal Burning">Illegal Burning</option>
-                </select> */}
-            {/* </div> */}
+            <input
+                onChange={(e) => setAddress(e.target.value)}
+                value={address}
+                type="text"
+                placeholder="Address"
+                className="border border-slate-500 px-8 py-2"
+            />
+            <select
+                onChange={(e) => setViolation(e.target.value)}
+                selected={violation}
+                placeholder="Contact Description"
+            >
+                <option value="0" selected disabled>Select One</option>
+                <option value="Tall Grass">Tall Grass</option>
+                <option value="Trash In Yard">Trash In Yard</option>
+                <option value="Downed Tree">Downed Tree</option>
+                <option value="Illegal Burning">Illegal Burning</option>
+            </select>
             <textarea
                 onChange={(e) => setDescription(e.target.value)}
                 value={description}

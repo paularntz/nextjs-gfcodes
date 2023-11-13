@@ -2,7 +2,7 @@ import EditTopicForm from "@/components/EditTopicForm";
 
 const getTopicById = async(id) => {
     try {
-        const res = await fetch(process.env.URI + `/api/topics/${id}`, 
+        const res = await fetch(`${process.env.API_URL}/api/topics/${id}`, 
             {cache: "no-store"}
         );
         if (!res.ok) {
@@ -17,8 +17,8 @@ const getTopicById = async(id) => {
 export default async function EditTopic({ params }) {
     const {id} = params;
     const {topic} = await getTopicById(id);
-    const {firstName, title, lastName, description} = topic;
+    const {firstName, address, lastName, description, violation} = topic;
     return (
-    <EditTopicForm id={id} title={title} lastName={lastName} firstName={firstName} description={description} />
+    <EditTopicForm id={id} address={address} lastName={lastName} firstName={firstName} description={description} violation={violation} />
     )
 }

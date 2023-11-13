@@ -1,22 +1,23 @@
-"use client"
+"use client";
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 
-export default function EditTopicForm( {id, title, lastName, firstName, description}) {
+export default function EditTopicForm( {id, address, lastName, firstName, description, violation}) {
 
-    const [newTitle, setNewTitle] = useState(title)
+    const [newAddress, setNewAddress] = useState(address)
     const [newLastName, setNewLastName] = useState(lastName)
     const [newFirstName, setNewFirstName] = useState(firstName)
     const [newDescription, setNewDescription] = useState(description)
+    const [newViolation, setNewViolation] = useState(violation)
     const router = useRouter()
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch(process.env.URI + `/api/topics/${id}`,
+            const res = await fetch(`/api/topics/${id}`,
             {
                 method: "PUT",
                 headers: {"Content-type": "application/json"},
-                body: JSON.stringify({"firstName": newFirstName, "lastName": newLastName, "title": newTitle, "description": newDescription}),
+                body: JSON.stringify({"firstName": newFirstName, "lastName": newLastName, "address": newAddress, "description": newDescription, "violation": newViolation}),
             })
             if (!res.ok) {
                 throw new Error("Failed to update topic.")
@@ -43,19 +44,31 @@ export default function EditTopicForm( {id, title, lastName, firstName, descript
             type="text" 
             placeholder="Last Name" 
             className="border border-slate-500 px-8 py-2"
-        />        
-        <input 
-            onChange={e => setNewTitle(e.target.value)}
-            value={newTitle}
+        />  
+        <select
+            onChange={(e) => setNewViolation(e.target.value)}
+            placeholder="Contact Description"
+            defaultValue={newViolation}
+            className="border border-slate-500 px-8 py-2"
+        >
+            <option value="0" disabled selected>Select One</option>
+            <option value="Tall Grass">Tall Grass</option>
+            <option value="Trash In Yard">Trash In Yard</option>
+            <option value="Downed Tree">Downed Tree</option>
+            <option value="Illegal Burning">Illegal Burning</option>
+        </select>      
+        <input
+            onChange={e => setNewAddress(e.target.value)}
+            value={newAddress}
             type="text" 
-            placeholder="Contact Title" 
+            placeholder="Contact Address" 
             className="border border-slate-500 px-8 py-2"
         />
         <textarea
             onChange={e => setNewDescription(e.target.value)}
             value={newDescription}
             placeholder="Description - Notes"
-            className="border border-slate-500 px8 py2"
+            className="border border-slate-500 px-8 py-2"
         />
 
         <button type="submit" className="bg-green-600 font-bold text-white py-3 px-6 w-fit">
