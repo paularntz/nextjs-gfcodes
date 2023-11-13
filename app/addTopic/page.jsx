@@ -68,7 +68,7 @@ export default function AddTopic() {
                 defaultValue={violation}
                 className="border border-slate-500 px-8 py-2"
             >
-                <option value="0" disabled>Select One</option>
+                <option value="0" disabled>Select Violation</option>
                 <option value="Tall Grass">Tall Grass</option>
                 <option value="Trash In Yard">Trash In Yard</option>
                 <option value="Downed Tree">Downed Tree</option>

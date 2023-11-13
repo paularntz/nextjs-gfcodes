@@ -51,7 +51,7 @@ export default function EditTopicForm( {id, address, lastName, firstName, descri
             defaultValue={newViolation}
             className="border border-slate-500 px-8 py-2"
         >
-            <option value="0" disabled selected>Select One</option>
+            <option value="0" disabled selected>Select Violation</option>
             <option value="Tall Grass">Tall Grass</option>
             <option value="Trash In Yard">Trash In Yard</option>
             <option value="Downed Tree">Downed Tree</option>
