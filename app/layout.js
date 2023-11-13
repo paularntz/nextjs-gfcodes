@@ -5,8 +5,8 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Greenville Code Enforcement',
-  description: 'Developed by Paul Arntz',
+  title: 'GFD Codes Enforcement',
+  description: 'Custom Developed For Greenville Fire Department',
 }
 
 export default function RootLayout({ children }) {
