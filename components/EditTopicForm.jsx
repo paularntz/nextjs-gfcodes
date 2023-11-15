@@ -1,8 +1,9 @@
 "use client";
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import moment from "moment"
 
-export default function EditTopicForm( {id, address, lastName, firstName, description, violation}) {
+export default function EditTopicForm( {id, address, lastName, firstName, description, violation, date}) {
 
     const [newAddress, setNewAddress] = useState(address)
     const [newLastName, setNewLastName] = useState(lastName)
@@ -30,50 +31,52 @@ export default function EditTopicForm( {id, address, lastName, firstName, descri
     }
 
     return (
+        <>
+        <div className="px-8 py-2">{moment(date).format('LLLL')}</div>
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-        <input 
-            onChange={e => setNewFirstName(e.target.value)}
-            value={newFirstName}
-            type="text" 
-            placeholder="First Name" 
-            className="border border-slate-500 px-8 py-2"
-        />
-        <input 
-            onChange={e => setNewLastName(e.target.value)}
-            value={newLastName}
-            type="text" 
-            placeholder="Last Name" 
-            className="border border-slate-500 px-8 py-2"
-        />  
-        <select
-            onChange={(e) => setNewViolation(e.target.value)}
-            placeholder="Contact Description"
-            defaultValue={newViolation}
-            className="border border-slate-500 px-8 py-2"
-        >
-            <option value="0" disabled selected>Select Violation</option>
-            <option value="Tall Grass">Tall Grass</option>
-            <option value="Trash In Yard">Trash In Yard</option>
-            <option value="Downed Tree">Downed Tree</option>
-            <option value="Illegal Burning">Illegal Burning</option>
-        </select>      
-        <input
-            onChange={e => setNewAddress(e.target.value)}
-            value={newAddress}
-            type="text" 
-            placeholder="Contact Address" 
-            className="border border-slate-500 px-8 py-2"
-        />
-        <textarea
-            onChange={e => setNewDescription(e.target.value)}
-            value={newDescription}
-            placeholder="Description - Notes"
-            className="border border-slate-500 px-8 py-2"
-        />
-
-        <button type="submit" className="bg-green-600 font-bold text-white py-3 px-6 w-fit">
-            Update Contact
-        </button>
-    </form>
+            <input 
+                onChange={e => setNewFirstName(e.target.value)}
+                value={newFirstName}
+                type="text" 
+                placeholder="First Name" 
+                className="border border-slate-500 px-8 py-2"
+            />
+            <input 
+                onChange={e => setNewLastName(e.target.value)}
+                value={newLastName}
+                type="text" 
+                placeholder="Last Name" 
+                className="border border-slate-500 px-8 py-2"
+            />  
+            <select
+                onChange={(e) => setNewViolation(e.target.value)}
+                placeholder="Contact Description"
+                defaultValue={newViolation}
+                className="border border-slate-500 px-8 py-2"
+            >
+                <option value="0" disabled>Select Violation</option>
+                <option value="Tall Grass">Tall Grass</option>
+                <option value="Trash In Yard">Trash In Yard</option>
+                <option value="Downed Tree">Downed Tree</option>
+                <option value="Illegal Burning">Illegal Burning</option>
+            </select>      
+            <input
+                onChange={e => setNewAddress(e.target.value)}
+                value={newAddress}
+                type="text" 
+                placeholder="Contact Address" 
+                className="border border-slate-500 px-8 py-2"
+            />
+            <textarea
+                onChange={e => setNewDescription(e.target.value)}
+                value={newDescription}
+                placeholder="Description - Notes"
+                className="border border-slate-500 px-8 py-2"
+            />
+            <button type="submit" className="bg-green-600 font-bold text-white py-3 px-6 w-fit">
+                Update Contact
+            </button>
+        </form>
+        </>
     )
 }

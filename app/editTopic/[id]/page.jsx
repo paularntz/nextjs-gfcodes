@@ -17,8 +17,8 @@ const getTopicById = async(id) => {
 export default async function EditTopic({ params }) {
     const {id} = params;
     const {topic} = await getTopicById(id);
-    const {firstName, address, lastName, description, violation} = topic;
+    const {firstName, address, lastName, description, violation, date} = topic;
     return (
-    <EditTopicForm id={id} address={address} lastName={lastName} firstName={firstName} description={description} violation={violation} />
+    <EditTopicForm id={id} address={address} lastName={lastName} firstName={firstName} description={description} violation={violation} date={date} />
     )
 }

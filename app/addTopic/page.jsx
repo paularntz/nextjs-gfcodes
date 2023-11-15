@@ -13,8 +13,8 @@ export default function AddTopic() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!firstName || !lastName) {
-            alert("First Name, Last Name and Address are required.")
+        if (!address) {
+            alert("Address is required.")
             return
         }
         try {

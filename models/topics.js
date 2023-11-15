@@ -7,6 +7,7 @@ const topicSchema = new Schema(
         address: String,
         violation:String,
         description: String,
+        date: { type: Date, default: Date.now },
     }, 
     {
         timestamp: true,

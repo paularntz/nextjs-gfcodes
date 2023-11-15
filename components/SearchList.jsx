@@ -2,31 +2,30 @@ import RemoveBtn from "./RemoveBtn"
 import { HiPencilAlt } from "react-icons/hi"
 import Link from "next/link"
 import moment from "moment"
+import { useState } from "react"
 
-export default async function TopicsList() {
+export default function SearchList(props) {
+    const sstr = props.sstr;
+    const [topics, setTopics] = useState([])
 
-    const getTopics = async () => {
+    const fetchTopics = async () => {
 
         try {
-            const res = await fetch(process.env.API_URL + "/api/topics",
-                {cache: 'no-store'}
-            );
-            if (!res.ok) {
-                throw new Error("Failed to fetch topics");
-            }
-            return res.json();
+            const res = await fetch (`/api/search?sstr=${sstr}`, {cache: 'no-store'})
+            const data = await res.json()
+            setTopics(data.topics);
+            
         } catch (error) {
-            console.log("error loading topics: ", error);
+            console.log(error);  
         }
+        
     }
 
-    let { topics } = await getTopics().then(resp=>{
-        return resp ? resp : {};
-    })
+    fetchTopics();
 
     return (
         <>
-        {topics?.map( (t) => (
+        {topics && topics?.map( (t) => (
             <div key={t._id} className="p-4 border border-slate-300 my-3 flex justify-between gap-5 items-start">
                 <div>
                     {moment(t.date).format('LLLL')}
