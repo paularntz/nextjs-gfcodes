@@ -8,10 +8,8 @@ import { useEffect, useState } from "react"
 export default function SearchList(props) {
     const sstr = props.sstr;
     const [topics, setTopics] = useState([])
-
     useEffect(() => {
         const fetchTopics = async () => {
-
             try {
                 const res = await fetch (`/api/search?sstr=${sstr}`, {cache: 'no-store'})
                 const data = await res.json()
@@ -19,8 +17,7 @@ export default function SearchList(props) {
                 
             } catch (error) {
                 console.log(error);  
-            }
-            
+            } 
         }
         fetchTopics()
     }, [])
