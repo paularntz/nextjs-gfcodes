@@ -2,26 +2,28 @@ import RemoveBtn from "./RemoveBtn"
 import { HiPencilAlt } from "react-icons/hi"
 import Link from "next/link"
 import moment from "moment"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+
 
 export default function SearchList(props) {
     const sstr = props.sstr;
     const [topics, setTopics] = useState([])
 
-    const fetchTopics = async () => {
+    useEffect(() => {
+        const fetchTopics = async () => {
 
-        try {
-            const res = await fetch (`/api/search?sstr=${sstr}`, {cache: 'no-store'})
-            const data = await res.json()
-            setTopics(data.topics);
+            try {
+                const res = await fetch (`/api/search?sstr=${sstr}`, {cache: 'no-store'})
+                const data = await res.json()
+                setTopics(data.topics);
+                
+            } catch (error) {
+                console.log(error);  
+            }
             
-        } catch (error) {
-            console.log(error);  
         }
-        
-    }
-
-    fetchTopics();
+        fetchTopics()
+    }, [])
 
     return (
         <>

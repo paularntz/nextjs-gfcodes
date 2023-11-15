@@ -8,9 +8,9 @@ export default function FindAddress() {
     const router = useRouter();
 
     const handleSubmit = (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
         router.push(`/searchResults?sstr=${sstr}`)
-        
+         
     }
 
     return (
